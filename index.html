@@ -16,11 +16,11 @@
 
     <div id="centreMe">
       <div id="xyloBorder">
-          <div id="1" onclick="playSound(this)" class="xyloButton1"></div>
-            <div id="2" onclick="playSound(this)" class="xyloButton2"></div>
-          <div id="3" onclick="playSound(this)" class="xyloButton3"></div>
-          <div id="4" onclick="playSound(this)" class="xyloButton4"></div>
-          <div id="5" onclick="playSound(this)" class="xyloButton5"></div>                                    
+          <div id="1" class="xyloButton1" tabindex="0"></div>
+            <div id="2" class="xyloButton2" tabindex="0"></div>
+          <div id="3" class="xyloButton3" tabindex="0"></div>
+          <div id="4" class="xyloButton4" tabindex="0"></div>
+          <div id="5" class="xyloButton5" tabindex="0"></div>                                    
         </div>
         <div id="linksPanel"> <a href="http://twitter.com/DaftLimmy" target="_blank"><img src="assets/twitterlogoblack.png" width="53" height="43" border="0"></a></div>
     </div>
@@ -39,17 +39,24 @@
     var wordNumber = 1;
 
         function init() {
+            var xyloBorder = document.getElementById('xyloBorder');
             if (window.top != window) {
                 document.getElementById("header").style.display = "none";
             }
 
             if (!createjs.Sound.initializeDefaultPlugins()) {
                 document.getElementById("error").style.display = "block";
-                document.getElementById("xyloBorder").style.display = "none";
+                xyloBorder.style.display = "none";
                 return;
             }
 
             document.getElementById("loader").className = "loader";
+
+            Array.prototype.forEach.call(xyloBorder.children, function(xylo) {
+                xylo.addEventListener('click', playSound);
+                xylo.addEventListener('touchstart', playSound);
+            });
+
             var assetsPath = "assets/";
             var manifest = [
                 {src:"1_1.ogg", id:"1_1"},
@@ -99,7 +106,10 @@
             createjs.Sound.stop();
         }
 
-        function playSound(target) {
+        function playSound(event) {
+            event.preventDefault();
+            var target = event.target;
+            target.focus();
             //Play the sound: play (src, interrupt, delay, offset, loop, volume, pan)
             var instance = createjs.Sound.play(wordNumber + "_" + target.id, createjs.Sound.INTERRUPT_NONE, 0, 0, false, 1);
             if (instance == null || instance.playState == createjs.Sound.PLAY_FAILED) { return; }

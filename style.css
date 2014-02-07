@@ -85,18 +85,23 @@ body, html {
   background-color: #0f4295;
 }
 
-.xyloButton1:active {
+.xyloButton1:focus {
   background-color: #33d6ff;
+  outline: 0;
 }
-.xyloButton2:active {
+.xyloButton2:focus {
   background-color: #feff33;
+  outline: 0;
 }
-.xyloButton3:active {
+.xyloButton3:focus {
   background-color: #33ff33;
+  outline: 0;
 }
-.xyloButton4:active {
+.xyloButton4:focus {
   background-color: #ff2fab;
+  outline: 0;
 }
-.xyloButton5:active {
+.xyloButton5:focus {
   background-color: #0059e9;
+  outline: 0;
 }
