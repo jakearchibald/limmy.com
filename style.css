@@ -63,6 +63,13 @@ body, html {
   cursor: pointer;
 }
 
+@media screen and (max-width: 370px) {
+  .xyloButton1, .xyloButton2, .xyloButton3, .xyloButton4, .xyloButton5 {
+    max-height: 300px;
+    max-height: 60vh;
+  }
+}
+
 .xyloButton1, .xyloButton2, .xyloButton3, .xyloButton4, .xyloButton5 {
    cursor: pointer;
 }
